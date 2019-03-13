@@ -1,0 +1,31 @@
+mat-card{
+    width: 80%;
+    height: 100%;
+    margin: 0% auto;
+    text-align: center;
+   }
+   form{
+    width: 80%;
+    height: 100%;
+    margin: auto auto;
+    text-align: center;
+   }
+   mat-card-actions{
+    width: 100%;
+    margin: 0% auto; 
+    text-align: center;
+   }
+  
+  mat-form-field{
+    width: 400px;
+    background-color: rgb(197, 241, 241);
+}
+
+mat-card-title{
+    
+    color: blue;
+    width: 62%;
+    margin: 0% auto; 
+    text-align: center;
+   
+}
