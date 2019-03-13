@@ -44,17 +44,20 @@ export class EmpleadoListComponent implements OnInit, AfterViewInit {
   }
 
   public redirectToDetails = (id: string) => {
-    let url: string = `/empleados/${id}`;
+    let url: string = `/empleado/details/${id}`;
+    console.log(url);
     this.router.navigate([url]);
+    
+
   }
 
   public redirectToUpdate = (id: string) => {
-    let url: string = `/empleados/update/${id}`;
+    let url: string = `/empleado/update/${id}`;
     this.router.navigate([url]);
   }
 
   public redirectToDelete = (id: string) => {
-    let url: string = `/empleados/delete/${id}`;
+    let url: string = `/empleado/delete/${id}`;
     this.router.navigate([url]);
   }
 }

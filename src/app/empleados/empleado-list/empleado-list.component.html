@@ -58,6 +58,7 @@
         mat-icon-button
         color="primary"
         (click)="redirectToDetails(element.id)"
+       
       >
         <mat-icon class="mat-18">reorder</mat-icon>
       </button>
@@ -94,5 +95,5 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 
-<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[2, 4, 6, 10, 20]">
 </mat-paginator>
