@@ -8,10 +8,10 @@
               <div fxFlex>{{owner?.name}}</div>
             </div>
       
-            <div fxLayout="row wrap" fxFlex>
+            <!-- <div fxLayout="row wrap" fxFlex>
               <div fxFlex><strong>Date of birth:</strong></div>
               <div fxFlex>{{owner?.dateOfBirth | date}}</div>
-            </div>
+            </div> -->
       
             <div fxLayout="row wrap" fxFlex *ngIf='owner?.accounts.length <= 2; else advancedUser'>
               <div fxFlex><strong>Type of user:</strong></div>

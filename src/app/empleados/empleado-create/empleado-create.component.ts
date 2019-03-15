@@ -53,6 +53,7 @@ export class EmpleadoCreateComponent implements OnInit {
   public createOwner = (ownerFormValue) => {
     if (this.ownerForm.valid) {
       this.executeOwnerCreation(ownerFormValue);
+      console.log(ownerFormValue)
     }
   }
 
@@ -64,7 +65,7 @@ export class EmpleadoCreateComponent implements OnInit {
       telefono : ownerFormValue.telefono
     }
 
-    let apiUrl = 'app/empleados';
+    let apiUrl = 'api/empleados/create';
     this.repository.create(apiUrl, owner)
       .subscribe(res => {
         let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);
