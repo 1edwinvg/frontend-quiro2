@@ -52,7 +52,7 @@ export class EmpleadoDeleteComponent implements OnInit {
   }
 
   public deleteOwner = () => {
-    let deleteUrl: string = `api/empleados/${this.owner.id}`;
+    let deleteUrl: string = `api/empleados/delete/${this.owner.id}`;
     this.repository.delete(deleteUrl)
       .subscribe(res => {
         let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);
