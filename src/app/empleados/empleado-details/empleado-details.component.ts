@@ -18,11 +18,13 @@ export class EmpleadoDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getOwnerDetails();
+    console.log("ESTAMOS EN EL COMPONENTE EmpleadoDetailsComponent");
   }
 
   private getOwnerDetails = () =>{
     let id: string = this.activeRoute.snapshot.params['id'];
     let apiUrl: string = `api/empleados/${id}`;
+    console.log(`el id del empleado es ${id} y la apiUrl es ${apiUrl}`);
  
     this.repository.getData(apiUrl)
     .subscribe(res => {

@@ -1,3 +1,4 @@
+import{ Factura } from './factura.model';
 export interface Cliente {
     id: any;
     nombre: string;
@@ -5,4 +6,5 @@ export interface Cliente {
     email: string;
     edad: any;
     telefono: any;
+    factura: Factura;
 }

@@ -1,5 +1,113 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title>Modificar Empleado</mat-card-title>
+    <form
+      [formGroup]="ownerForm"
+      autocomplete="off"
+      novalidate
+      (ngSubmit)="updateOwner(ownerForm.value)"
+      fxLayout="column wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+    >
+      <mat-card-content>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="Nombre:"
+            formControlName="nombre"
+            id="nombre"
+          />
+          <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
+          <mat-error *ngIf="hasError('nombre', 'required')"
+            >nombre requerido</mat-error
+          >
+          <mat-error *ngIf="hasError('nombre', 'maxlength')"
+            >has introducido mas de 60 caracteres</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="apellido"
+            formControlName="apellido"
+          />
+          <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
+          <mat-error *ngIf="hasError('apellido', 'required')"
+            >apellido requerido</mat-error
+          >
+          <mat-error *ngIf="hasError('apellido', 'maxlength')"
+            >has introducido mas de 60 caracteres</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="email"
+            formControlName="email"
+          />
+          <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
+          <mat-error *ngIf="hasError('email', 'required')"
+            >email requerido</mat-error
+          >
+          <mat-error *ngIf="hasError('email', 'maxlength')"
+            >has introducido mas de 60 caracteres</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="telefono"
+            formControlName="telefono"
+          />
+          <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
+          <mat-error *ngIf="hasError('telefono', 'required')"
+            >telefono requerido</mat-error
+          >
+          <mat-error *ngIf="hasError('telefono', 'maxlength')"
+            >has introducido mas de 60 caracteres</mat-error
+          >
+        </mat-form-field>
+        <!--<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Choose a date of birth" formControlName="create_at" id="create_at"
+  readonly (click)="picker.open()">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>-->
+
+        <!--<mat-form-field>
+  <input matInput type="text" placeholder="Owner's address" formControlName="address">
+  <mat-hint align="end">Not more then 100 characters long.</mat-hint>
+  <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
+  <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>
+  </mat-form-field>-->
+      </mat-card-content>
+      <mat-card-actions align="center">
+        <button mat-raised-button color="primary" [disabled]="!ownerForm.valid">
+          Update
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</section>
+
+<!-- <section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Update owner</mat-card-title>
     <form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="updateOwner(ownerForm.value)" fxLayout="column wrap"
       fxLayoutAlign="center center" fxLayoutGap="10px">
@@ -33,4 +141,4 @@
       </mat-card-actions>
     </form>
   </mat-card>
-</section>
+</section> -->

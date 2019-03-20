@@ -11,7 +11,8 @@ const ownerRoutes: Routes = [
   
   { path: 'login', component: LoginComponent  },
   { path: 'inicio', component: InicioComponent , canActivate: [AuthGuard] }  ,
-  { path: 'empleado', loadChildren: "./../empleados/componente.module#ComponenteModule" },
+  { path: 'empleados', loadChildren: "./../empleados/componente.module#ComponenteModule" },
+  { path: 'clientes', loadChildren: "./../clientes/componente.cliente.module#ComponenteClienteModule" },
   { path: '404', component: NotFoundComponent },
   { path: '500', component: ServerErrorComponent },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },

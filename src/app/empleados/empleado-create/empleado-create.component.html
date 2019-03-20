@@ -41,6 +41,13 @@
           <mat-error *ngIf="hasError('telefono', 'number')">solo numeros</mat-error>
         </mat-form-field>
 
+        <mat-form-field >
+          <input matInput type="text" placeholder="tipo de empleado" formControlName="tipoEmpleado" id="tipoEmpleado">
+          <mat-hint align="end">no mas de 60 caracteres.</mat-hint>
+          <mat-error *ngIf="hasError('tipoEmpleado', 'required')">se necesita el tipo de empleado</mat-error>
+          <mat-error *ngIf="hasError('tipoEmpleado', 'maxlength')">Tienes más de 60 caracteres.</mat-error>
+        </mat-form-field>
+
       </mat-card-content>
       
       

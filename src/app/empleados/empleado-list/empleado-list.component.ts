@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EmpleadoListComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = [ 'id','nombre', 'apellido', 'email', 'telefono', 'details', 'update', 'delete'];
+  public displayedColumns = [ 'nombre', 'apellido', 'telefono', 'details', 'update', 'delete'];
   public dataSource = new MatTableDataSource<Empleado>(); 
 
   @ViewChild(MatSort) sort: MatSort;
@@ -44,7 +44,7 @@ export class EmpleadoListComponent implements OnInit, AfterViewInit {
   }
 
   public redirectToDetails = (id: string) => {
-    let url: string = `/empleado/details/${id}`;
+    let url: string = `/empleados/details/${id}`;
     console.log(url);
     this.router.navigate([url]);
     
@@ -52,12 +52,12 @@ export class EmpleadoListComponent implements OnInit, AfterViewInit {
   }
 
   public redirectToUpdate = (id: string) => {
-    let url: string = `/empleado/update/${id}`;
+    let url: string = `/empleados/update/${id}`;
     this.router.navigate([url]);
   }
 
   public redirectToDelete = (id: string) => {
-    let url: string = `/empleado/delete/${id}`;
+    let url: string = `/empleados/delete/${id}`;
     this.router.navigate([url]);
   }
 }

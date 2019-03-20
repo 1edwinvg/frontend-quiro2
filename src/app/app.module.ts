@@ -16,6 +16,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { LoginModule } from './login/login.module';
 import { AlertComponent } from './login/_directives/alert.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,9 +26,7 @@ import { AlertComponent } from './login/_directives/alert.component';
     SidenavListComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    AlertComponent
-    
-    
+    AlertComponent, 
   ],
   imports: [
     BrowserModule,

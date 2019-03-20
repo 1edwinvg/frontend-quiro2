@@ -10,6 +10,7 @@ export class RepositoryService {
   constructor(private http: HttpClient) { }
 
   public getData(route: string) {
+    console.log("ruta getData() " + route + "---- " + environment.urlAddress);
     return this.http.get(this.createCompleteRoute(route, environment.urlAddress));
   }
  

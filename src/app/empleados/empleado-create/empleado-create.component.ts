@@ -62,7 +62,8 @@ export class EmpleadoCreateComponent implements OnInit {
       nombre: ownerFormValue.nombre,
       apellido: ownerFormValue.apellido,
       email:  ownerFormValue.email,
-      telefono : ownerFormValue.telefono
+      telefono : ownerFormValue.telefono,
+      tipoEmpleado : ownerFormValue.tipoEmpleado
     }
 
     let apiUrl = 'api/empleados/create';

@@ -5,6 +5,7 @@ export interface Empleado{
     apellido: string;
     email: string;
     telefono: any;
+    tipoEmpleado: string;
 
     //accounts?: Cliente;
 }
