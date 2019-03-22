@@ -1,3 +1,2 @@
-<p>
-  cliente-details works!
-</p>
+<app-cliente-data [cliente]='cliente' (selectEmitt)='showAccounts = $event'></app-cliente-data>
+<!--<app-account-data *ngIf='showAccounts' [accounts]='cliente?.accounts'></app-account-data>-->

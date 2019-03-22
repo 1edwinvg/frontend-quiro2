@@ -5,6 +5,7 @@ export interface Cliente {
     apellido: string;
     email: string;
     edad: any;
-    telefono: any;
+    movil: any;
+    dolencia: string;
     factura: Factura;
 }

@@ -1,0 +1,44 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title>Detalles del cliente</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column wrap" fxLayoutGap="40px">
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Nombre :</strong></div>
+          <div fxFlex>{{ cliente?.nombre }} {{ cliente?.apellido }}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Telefono :</strong></div>
+          <div fxFlex>{{ cliente?.movil }}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>email :</strong></div>
+          <div fxFlex>{{ cliente?.email }}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Dolencia: </strong></div>
+          <div fxFlex>{{ cliente?.dolencia }}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Edad :</strong></div>
+          <div fxFlex>{{ cliente?.edad }}</div>
+        </div>
+      </div>
+
+      <!-- prueba -->
+
+      <!-- <div fxLayout="row wrap" fxFlex>
+  <div fxFlex><strong>Date of birth:</strong></div>
+  <div fxFlex>{{cliente?.dateOfBirth | date}}</div>
+  </div> -->
+    </mat-card-content>
+    <!-- material icons propios , redirecciona a la lista de clientes -->
+    <a style="float:right;color: #3f63b5;" [routerLink]="['/clientes/lista']"
+      ><i class="material-icons">subdirectory_arrow_left</i></a
+    >
+  </mat-card>
+</section>

@@ -5,6 +5,8 @@ export interface ClienteCrea {
     apellido: string;
     email: string;
     edad: any;
-    telefono: any;
+    movil: any;
+    dolencia: string;
+
     
 }

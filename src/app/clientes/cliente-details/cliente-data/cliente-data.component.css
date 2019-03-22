@@ -6,3 +6,11 @@ mat-card-content{
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.advanced-color{
+    color: #3f51b5;
+}
+
+.beginner-color{
+    color: #f44336;
+}
