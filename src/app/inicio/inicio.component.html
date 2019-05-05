@@ -1,14 +1,15 @@
 <section fxLayout="column wrap">
   <div fxFlexAlign="center">
-    <p>CLIENTES</p>
+    <p>{{tabsNombres}}</p>
   </div>
 
   <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
     <mat-tab label="Generar Factura">
-      <mat-button-toggle color="primary" value="underline">Underline</mat-button-toggle>
+        <app-facturas></app-facturas>
     </mat-tab>
     <mat-tab label="Producto">
-      <mat-accordion>
+        <app-productos></app-productos>
+      <!-- <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -39,7 +40,7 @@
           </mat-expansion-panel-header>
           <p>I'm visible because I am open</p>
         </mat-expansion-panel>
-      </mat-accordion>
+      </mat-accordion> -->
       
     </mat-tab>
     <mat-tab label="Trabajador">

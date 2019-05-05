@@ -7,6 +7,7 @@ import { A11yModule } from "@angular/cdk/a11y";
 import { CdkStepperModule } from "@angular/cdk/stepper";
 import { CdkTableModule } from "@angular/cdk/table";
 import { CdkTreeModule } from "@angular/cdk/tree";
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import {
   MatToolbarModule,
@@ -44,7 +45,7 @@ import {
   MatTabsModule,
   MatTooltipModule,
   MatTreeModule,
-  
+  MatFormFieldModule,   
 } from "@angular/material";
 
 @NgModule({
@@ -89,7 +90,9 @@ import {
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    NgxMatSelectSearchModule,
+    MatFormFieldModule
   ],
   exports: [
     A11yModule,

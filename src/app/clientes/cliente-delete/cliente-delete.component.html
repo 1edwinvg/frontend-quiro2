@@ -4,6 +4,11 @@
     <mat-card-title>Borrar Cliente</mat-card-title>
     <mat-card-content>
       <div fxLayout="column wrap" fxLayoutGap="40px">
+
+          <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>DNI</strong></div>
+              <div fxFlex>{{cliente?.dni}}</div>
+            </div>
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>nombre</strong></div>
           <div fxFlex>{{cliente?.nombre}}</div>

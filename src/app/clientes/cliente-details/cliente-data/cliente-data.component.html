@@ -3,6 +3,10 @@
     <mat-card-title>Detalles del cliente</mat-card-title>
     <mat-card-content>
       <div fxLayout="column wrap" fxLayoutGap="40px">
+          <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>DNI :</strong></div>
+              <div fxFlex>{{ cliente?.dni }}</div>
+            </div>
         <div fxLayout="row wrap" fxFlex>
           <div fxFlex><strong>Nombre :</strong></div>
           <div fxFlex>{{ cliente?.nombre }} {{ cliente?.apellido }}</div>

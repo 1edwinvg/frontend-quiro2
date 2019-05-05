@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProtractorExpectedConditions } from 'protractor';
 
 @Component({
   selector: 'app-inicio',
@@ -7,13 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
+  private tabsNombres:string;
   constructor() { }
 
   ngOnInit() {
+
+    this.tabsNombres = 'Generar Factura';
   }
 
   public executeSelectedChange = (event) => {
     console.log(event);
+    this.tabsNombres= event.tab.textLabel;
   }
 
 }

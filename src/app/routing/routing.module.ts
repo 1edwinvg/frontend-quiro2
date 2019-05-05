@@ -6,11 +6,13 @@ import { ServerErrorComponent } from '../error-pages/server-error/server-error.c
 import { InicioComponent } from '../inicio/inicio.component';
 import { LoginComponent } from '../login/login/login.component';
 import { AuthGuard } from '../login/_directives/auth.guard';
+ 
+
 
 const ownerRoutes: Routes = [
   
   { path: 'login', component: LoginComponent  },
-  { path: 'inicio', component: InicioComponent , canActivate: [AuthGuard] }  ,
+  { path: 'inicio', component: InicioComponent }  ,
   { path: 'empleados', loadChildren: "./../empleados/componente.module#ComponenteModule" },
   { path: 'clientes', loadChildren: "./../clientes/componente.cliente.module#ComponenteClienteModule" },
   { path: '404', component: NotFoundComponent },

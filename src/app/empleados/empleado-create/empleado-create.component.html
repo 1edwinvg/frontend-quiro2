@@ -1,11 +1,18 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Nuevo Empleado</mat-card-title>
-    <form [formGroup]="ownerForm" autocomplete="on" novalidate (ngSubmit)="createOwner(ownerForm.value)" fxLayout="column wrap"
+    <form [formGroup]="empleadoForm" autocomplete="on" novalidate (ngSubmit)="createEmpleado(empleadoForm.value)" fxLayout="column wrap"
       fxLayoutAlign="center center" fxLayoutGap="20px" method="POST">
 
   
       <mat-card-content>
+
+          <mat-form-field>
+              <input matInput type="text" placeholder="DNI:" formControlName="dni" id="dni"  readonly/>
+              <mat-hint align="end">introduzca NIF valido</mat-hint>
+              <mat-error align="end" *ngIf="hasError('dni', 'required')">NIF requerido</mat-error>
+              <mat-error align="end" *ngIf="hasError('dni', 'pattern')">formato NIF no valido</mat-error>
+            </mat-form-field>
 
         <mat-form-field >
           <input matInput type="text" placeholder="Nombre" formControlName="nombre" id="nombre">
@@ -52,7 +59,7 @@
       
       
       <mat-card-actions align="center">
-        <button mat-raised-button color="primary" [disabled]="!ownerForm.valid">Create</button>
+        <button mat-raised-button color="primary" [disabled]="!empleadoForm.valid">Create</button>
         <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
       </mat-card-actions>
     </form>

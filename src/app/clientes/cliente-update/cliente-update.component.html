@@ -1,135 +1,74 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Modificar Cliente</mat-card-title>
-    <form
-      [formGroup]="clienteForm"
-      autocomplete="off"
-      novalidate
-      (ngSubmit)="updateOwner(clienteForm.value)"
-      fxLayout="column wrap"
-      fxLayoutAlign="center center"
-      fxLayoutGap="10px"
-    >
+    <form [formGroup]="clienteForm" autocomplete="on" novalidate (ngSubmit)="updateOwner(clienteForm.value)"
+      fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="10px">
       <mat-card-content>
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="Nombre:"
-            formControlName="nombre"
-            id="nombre"
-          />
+          <input matInput type="text" placeholder="DNI:" formControlName="dni" id="dni" readonly />
+          <mat-hint align="end">DNI no se puede modificar</mat-hint>
+
+        </mat-form-field>
+
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Nombre:" formControlName="nombre" id="nombre" />
           <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
-          <mat-error *ngIf="hasError('nombre', 'required')"
-            >nombre requerido</mat-error
-          >
-          <mat-error *ngIf="hasError('nombre', 'maxlength')"
-            >has introducido mas de 60 caracteres</mat-error
-          >
+          <mat-error align="end" *ngIf="hasError('nombre', 'required')">nombre requerido</mat-error>
+          <mat-error align="end" *ngIf="hasError('nombre', 'maxlength')">has introducido mas de 60 caracteres
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="apellido"
-            formControlName="apellido"
-          />
+          <input matInput type="text" placeholder="apellido" formControlName="apellido" />
           <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
-          <mat-error *ngIf="hasError('apellido', 'required')"
-            >apellido requerido</mat-error
-          >
-          <mat-error *ngIf="hasError('apellido', 'maxlength')"
-            >has introducido mas de 60 caracteres</mat-error
-          >
+          <mat-error *ngIf="hasError('apellido', 'required')">apellido requerido</mat-error>
+          <mat-error *ngIf="hasError('apellido', 'maxlength')">has introducido mas de 60 caracteres</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="email"
-            formControlName="email"
-          />
+          <input matInput type="text" placeholder="email" formControlName="email" />
           <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
-          <mat-error *ngIf="hasError('email', 'required')"
-            >email requerido</mat-error
-          >
-          <mat-error *ngIf="hasError('email', 'maxlength')"
-            >has introducido mas de 60 caracteres</mat-error
-          >
+          <mat-error *ngIf="hasError('email', 'required')">email requerido</mat-error>
+          <mat-error *ngIf="hasError('email', 'maxlength')">has introducido mas de 60 caracteres</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="telefono"
-            formControlName="movil"
-          />
-          <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
-          <mat-error *ngIf="hasError('movil', 'required')"
-            >telefono requerido</mat-error
-          >
-          <mat-error *ngIf="hasError('movil', 'maxlength')"
-            >has introducido mas de 60 caracteres</mat-error
-          >
+          <input matInput type="text" placeholder="telefono" formControlName="movil" />
+          <mat-hint align="end">telefono o movil</mat-hint>
+          <mat-error align="end" *ngIf="clienteForm.get('movil').hasError('minlength')">al menos 9 digitos</mat-error>
+          <!--<mat-error align="end" *ngIf="hasError('movil', minlength')">al menos 9 digitos</mat-error>-->
+          <mat-error align="end" *ngIf="hasError('movil', 'required')">numero de telefono o movil requerido</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="edad"
-            formControlName="edad"
-          />
-          <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
-          <mat-error *ngIf="hasError('edad', 'required')"
-            >edad requerido</mat-error
-          >
-          <mat-error *ngIf="hasError('edad', 'maxlength')"
-            >has introducido mas de 60 caracteres</mat-error
-          >
+          <input matInput type="number" placeholder="edad" formControlName="edad" min="1" max="100" />
+          <mat-hint align="end">introduzca su edad</mat-hint>
+          <mat-error align="end" *ngIf="hasError('edad', 'required')">edad requerida</mat-error>
+
+          <mat-error align="end" *ngIf="hasError('edad', 'max')">edad no valida</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="dolencia"
-            formControlName="dolencia"
-          />
+          <input matInput type="text" placeholder="dolencia" formControlName="dolencia" />
           <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
-          <mat-error *ngIf="hasError('dolencia', 'required')"
-            >apellido requerido</mat-error
-          >
-          <mat-error *ngIf="hasError('dolencia', 'maxlength')"
-            >has introducido mas de 60 caracteres</mat-error
-          >
+          <mat-error *ngIf="hasError('dolencia', 'required')">dolencia requerida</mat-error>
+          <mat-error *ngIf="hasError('dolencia', 'maxlength')">has introducido mas de 60 caracteres</mat-error>
         </mat-form-field>
         <!--<mat-form-field>
-  <input matInput [matDatepicker]="picker" placeholder="Choose a date of birth" formControlName="create_at" id="create_at"
-  readonly (click)="picker.open()">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>-->
-
-        
+		  <input matInput [matDatepicker]="picker" placeholder="Choose a date of birth" formControlName="create_at" id="create_at"
+		  readonly (click)="picker.open()">
+		  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		  <mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>-->
       </mat-card-content>
       <mat-card-actions align="center">
         <button mat-raised-button color="primary" [disabled]="!clienteForm.valid">
           Update
         </button>
-        <button
-          type="button"
-          mat-raised-button
-          color="warn"
-          (click)="onCancel()"
-        >
+        <button type="button" mat-raised-button color="warn" (click)="onCancel()">
           Cancel
         </button>
       </mat-card-actions>
     </form>
   </mat-card>
 </section>
-
-

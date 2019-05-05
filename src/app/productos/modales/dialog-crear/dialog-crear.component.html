@@ -1,0 +1,75 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title>Nuevo Cliente</mat-card-title>
+    <form
+      [formGroup]="productoForm"
+      autocomplete="on"
+      novalidate
+      (ngSubmit)="createProducto(productoForm.value)"
+      fxLayout="column wrap"
+      fxLayoutAlign="center center"
+      fxLayoutGap="20px"
+      method="POST"
+    >
+      <mat-card-content>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="Nombre"
+            formControlName="nombre"
+            id="nombre"
+          />
+          <mat-hint align="end">No más de 60 caracteres.</mat-hint>
+          <mat-error *ngIf="hasError('nombre', 'required')"
+            >se necesita el nombre</mat-error
+          >
+          <mat-error *ngIf="hasError('nombre', 'maxlength')"
+            > Tienes más de 60 caracteres.</mat-error
+          >
+          <span>{{ mensajeError }}</span>
+         
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            type="number"
+            placeholder="precio"
+            formControlName="precio"
+            min="1"
+            max="1000"
+          />
+          <mat-hint align="end">introduzca el precio</mat-hint>
+          <mat-error align="end" *ngIf="hasError('precio', 'required')"
+            >precio requerido</mat-error
+          >
+          <mat-error align="end" *ngIf="hasError('precio', 'pattern')">maximo 3 decimales</mat-error>
+          <mat-error align="end" *ngIf="hasError('precio', 'max')"
+            >supera el precio(1000€)</mat-error
+          >
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions align="center">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!productoForm.valid"
+        >
+          Crear
+        </button>
+        <button
+          type="button"
+          mat-raised-button
+          color="warn"
+          (click)="onCancelProducto()"
+        >
+          Cancel
+        </button>
+      </mat-card-actions>
+     
+
+    </form>
+  </mat-card>
+</section>

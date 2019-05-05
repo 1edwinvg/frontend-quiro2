@@ -1,6 +1,7 @@
 
 export interface ClienteCrea {
     
+    dni: string;
     nombre: string;
     apellido: string;
     email: string;

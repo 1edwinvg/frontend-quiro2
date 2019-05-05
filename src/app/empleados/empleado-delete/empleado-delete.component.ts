@@ -1,6 +1,5 @@
 import { RepositoryService } from '../../shared/repository.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material';
 import { SuccessDialogComponent } from '../../shared/dialogs/success-dialog/success-dialog.component';
@@ -52,7 +51,7 @@ export class EmpleadoDeleteComponent implements OnInit {
   }
 
   public deleteOwner = () => {
-    let deleteUrl: string = `api/empleados/delete/${this.owner.id}`;
+    let deleteUrl: string = `/clientes/desactivarcliente/${this.owner.id}`;
     this.repository.delete(deleteUrl)
       .subscribe(res => {
         let dialogRef = this.dialog.open(SuccessDialogComponent, this.dialogConfig);

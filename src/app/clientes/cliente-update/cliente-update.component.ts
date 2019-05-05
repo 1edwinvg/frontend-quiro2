@@ -31,7 +31,11 @@ export class ClienteUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // declaramos el nombre que le hemos puesto al formulario -- clienteForm (FormBuilder)
     this.clienteForm = new FormGroup({
+      dni: new FormControl("",[
+        Validators.required
+      ]),
       nombre: new FormControl("", [
         Validators.required,
         Validators.maxLength(60)
@@ -42,18 +46,22 @@ export class ClienteUpdateComponent implements OnInit {
         Validators.maxLength(100)
       ]),
       email: new FormControl("", [Validators.required, Validators.email]),
+      //movil: new FormControl("", [Validators.required, this.phoneNumberValidator ]),
       movil: new FormControl("", [
         Validators.required,
-        this.phoneNumberValidator
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(9)
       ]),
       dolencia: new FormControl("", [
         Validators.required,
-        Validators.maxLength(100)
+        Validators.maxLength(60)
       ]),
       edad: new FormControl("", [
         Validators.required,
-        this.phoneNumberValidator
-      ]),
+				Validators.pattern("^[0-9]*$"),
+				Validators.max(100)
+      ])
+      //edad: new FormControl("", [ Validators.required, this.phoneNumberValidator]),
     });
     this.dialogConfig = {
       height: "200px",
@@ -111,12 +119,17 @@ export class ClienteUpdateComponent implements OnInit {
     }
   };
   private executeClienteUpdate = ownerFormValue => {
+    (this.cliente.dni = ownerFormValue.dni),
     (this.cliente.nombre = ownerFormValue.nombre),
       (this.cliente.apellido = ownerFormValue.apellido),
       (this.cliente.email = ownerFormValue.email),
       (this.cliente.movil = ownerFormValue.movil),
       (this.cliente.edad = ownerFormValue.edad),
       (this.cliente.dolencia = ownerFormValue.dolencia);
+
+    // se comprueba el objeto de la peticion
+    console.log(ownerFormValue);
+
     let apiUrl = `api/clientes/update/${this.cliente.id}`;
     this.repository.update(apiUrl, this.cliente).subscribe(
       res => {

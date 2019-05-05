@@ -20,6 +20,7 @@ import { ClienteCrea } from "../../_interface/_interfaceCrea/Clientecrea.model";
 export class ClienteCreateComponent implements OnInit {
   public clienteForm: FormGroup;
   private dialogConfig;
+  private mensajeError: string;
 
   constructor(
     private location: Location,
@@ -30,25 +31,36 @@ export class ClienteCreateComponent implements OnInit {
 
   ngOnInit() {
     this.clienteForm = new FormGroup({
+      dni: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i)
+      ]),
       nombre: new FormControl("", [
         Validators.required,
         Validators.maxLength(60)
       ]),
       // dateOfBirth: new FormControl(new Date()),
-      edad: new FormControl(new Date()),
       apellido: new FormControl("", [
         Validators.required,
-        Validators.maxLength(60)
+        Validators.maxLength(100)
       ]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      telefono: new FormControl("", [
+      //movil: new FormControl("", [Validators.required, this.phoneNumberValidator ]),
+      movil: new FormControl("", [
         Validators.required,
-        this.phoneNumberValidator
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(9)
       ]),
-      dolencia : new FormControl("", [
+      dolencia: new FormControl("", [
         Validators.required,
         Validators.maxLength(60)
       ]),
+      edad: new FormControl("", [
+        Validators.required,
+        Validators.pattern("^[0-9]*$"),
+        Validators.max(100)
+      ])
+      
     });
 
     this.dialogConfig = {
@@ -57,15 +69,6 @@ export class ClienteCreateComponent implements OnInit {
       disableClose: true,
       data: {}
     };
-  }
-
-  phoneNumberValidator(
-    control: AbstractControl
-  ): { [key: string]: any } | null {
-    const valid = /^\d+$/.test(control.value);
-    return valid
-      ? null
-      : { invalidNumber: { valid: false, value: control.value } };
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -86,11 +89,12 @@ export class ClienteCreateComponent implements OnInit {
   /* le pasamos el value de los inputs*/
   private executeClienteCreation = clienteFormValue => {
     let cliente: ClienteCrea = {
+      dni: clienteFormValue.dni,
       nombre: clienteFormValue.nombre,
       apellido: clienteFormValue.apellido,
       edad: clienteFormValue.edad,
       email: clienteFormValue.email,
-      movil: clienteFormValue.telefono,
+      movil: clienteFormValue.movil,
       dolencia: clienteFormValue.dolencia
     };
 
@@ -111,6 +115,9 @@ export class ClienteCreateComponent implements OnInit {
       error => {
         this.errorService.dialogConfig = { ...this.dialogConfig };
         this.errorService.handleError(error);
+        if (error.includes("ConstraintViolationException")) {
+          this.mensajeError = "el usuario ya existe";
+        }
       }
     );
   };

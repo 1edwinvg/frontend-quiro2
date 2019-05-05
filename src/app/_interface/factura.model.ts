@@ -1,5 +1,6 @@
+import{ Cliente } from './cliente.model';
 export interface Factura {
-    name: string;
-    dateOfBirth: Date;
-    address: string;
+    descripcion: string;
+    observacion: string;
+    cliente: Cliente;
 }

@@ -1,0 +1,62 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <mat-card-title>Modificar Empleado</mat-card-title>
+      <form
+        [formGroup]="productoForm"
+        autocomplete="off"
+        novalidate
+        (ngSubmit)="updateProducto(productoForm.value)"
+        fxLayout="column wrap"
+        fxLayoutAlign="center center"
+        fxLayoutGap="10px"
+      >
+        <mat-card-content>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="Nombre:"
+              formControlName="nombre"
+              id="nombre"
+              readonly
+            />
+            <mat-hint align="end">nombre no se puede alterar</mat-hint>
+            <mat-error *ngIf="hasError('nombre', 'required')"
+              >nombre requerido</mat-error
+            >
+            <mat-error *ngIf="hasError('nombre', 'maxlength')"
+              >has introducido mas de 60 caracteres</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="precio"
+              formControlName="precio"
+            />
+            <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>
+            <mat-error *ngIf="hasError('precio', 'precio')"
+              >telefono requerido</mat-error
+            >
+            <mat-error *ngIf="hasError('precio', 'maxlength')"
+              >has introducido mas de 60 caracteres</mat-error
+            >
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="center">
+          <button mat-raised-button color="primary" [disabled]="!productoForm.valid">
+            Update
+          </button>
+          <button
+            type="button"
+            mat-raised-button
+            color="warn"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </section>
