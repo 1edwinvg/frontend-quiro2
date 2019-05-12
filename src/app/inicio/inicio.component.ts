@@ -9,11 +9,13 @@ import { ProtractorExpectedConditions } from 'protractor';
 export class InicioComponent implements OnInit {
 
   private tabsNombres:string;
+  panelOpenState = false;
   constructor() { }
 
   ngOnInit() {
 
     this.tabsNombres = 'Generar Factura';
+    
   }
 
   public executeSelectedChange = (event) => {

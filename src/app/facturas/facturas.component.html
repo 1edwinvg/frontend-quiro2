@@ -2,10 +2,11 @@
   <mat-card fxFlex="500px" fxFlex.xs="100%">
     <div fxLayout fxLayout.lt-md="column wrap" fxLayoutAlign="center center" fxLayoutGap.gt-sm="250px"
       fxLayoutGap.lt.md="20px">
+      <div *ngIf="activarBuscador">
       <mat-form-field>
         <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Buscar" />
       </mat-form-field>
-
+      </div>
     </div>
     <div *ngIf="activarTabla">
       <table mat-table [dataSource]="dataSource" matSort>
@@ -72,8 +73,10 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="text" placeholder="observacion" id="observacion">
+          <input matInput type="text" placeholder="observacion" formControlName="observacion" id="observacion">
           <mat-hint align="end">campo no obligatorio</mat-hint>
+          <mat-error *ngIf="hasError('descripcion', 'required')">se necesita la descripcion</mat-error>
+          <mat-error *ngIf="hasError('descripcion', 'maxlength')">Tienes más de 20 caracteres.</mat-error>
         </mat-form-field>
 
       </mat-card-content>

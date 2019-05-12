@@ -5,52 +5,15 @@
 
   <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
     <mat-tab label="Generar Factura">
-        <app-facturas></app-facturas>
+      <app-facturas></app-facturas>
+    </mat-tab>
+    <mat-tab label="buscador facturas">
+
+      <app-buscar-facturas-id></app-buscar-facturas-id>
+
     </mat-tab>
     <mat-tab label="Producto">
-        <app-productos></app-productos>
-      <!-- <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Personal data
-            </mat-panel-title>
-            <mat-panel-description>
-              Type your name and age
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-      
-          <mat-form-field>
-            <input matInput placeholder="First name">
-          </mat-form-field>
-      
-          <mat-form-field>
-            <input matInput placeholder="Age">
-          </mat-form-field>
-        </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Self aware panel
-            </mat-panel-title>
-            <mat-panel-description>
-              Currently I am {{panelOpenState ? 'open' : 'closed'}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>I'm visible because I am open</p>
-        </mat-expansion-panel>
-      </mat-accordion> -->
-      
-    </mat-tab>
-    <mat-tab label="Trabajador">
-      <button class="btn" mat-raised-button>Trabajadores</button>
-    </mat-tab>
-    <mat-tab label="Usuario">
-      <button>prueba2</button>
-    </mat-tab>
-    <mat-tab label="Factura">
-      <button>prueba2</button>
+      <app-productos></app-productos>
     </mat-tab>
   </mat-tab-group>
 </section>

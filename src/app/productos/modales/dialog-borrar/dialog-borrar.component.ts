@@ -19,8 +19,7 @@ export class DialogBorrarComponent implements OnInit {
 
   private dialogConfig;
   public producto: Producto;
- 
- 
+  
   constructor(
     private location: Location,
     private repository: RepositoryService,
@@ -67,9 +66,9 @@ export class DialogBorrarComponent implements OnInit {
     );
   };
 
-  public deleteProducto = () => {
-    let deleteUrl: string = `/productos/desactivarPro/${this.producto.id}`;
-    this.repository.delete(deleteUrl).subscribe(
+  public deleteProducto = (id) => {
+    let deleteUrl: string = `api/productos/desactivarPro/${id}`;
+    this.repository.update(deleteUrl,this.producto).subscribe(
       res => {
         let dialogRef = this.dialog.open(
           SuccessDialogComponent,

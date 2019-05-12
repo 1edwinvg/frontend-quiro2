@@ -24,6 +24,8 @@ import { DialogActualizarComponent } from "./productos/modales/dialog-actualizar
 import { DialogCrearComponent } from "./productos/modales/dialog-crear/dialog-crear.component";
 import { ProductoService } from "./productos/producto.service";
 import { BuscadorPipe } from "./pipes/buscador.pipe";
+import { BuscarFacturasIdComponent } from './facturas/buscar-facturas-id/buscar-facturas-id.component';
+import { BuscarFacturasClienteComponent } from './facturas/buscar-facturas-cliente/buscar-facturas-cliente.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { BuscadorPipe } from "./pipes/buscador.pipe";
     DialogBorrarComponent,
     DialogActualizarComponent,
     DialogCrearComponent,
-    BuscadorPipe
+    BuscadorPipe,
+    BuscarFacturasIdComponent,
+    BuscarFacturasClienteComponent
   ],
   imports: [
     BrowserModule,

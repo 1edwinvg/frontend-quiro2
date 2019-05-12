@@ -23,6 +23,8 @@ import { ReplaySubject, Subject, Observable } from "rxjs";
 import { Producto } from "../_interface/productos.model";
 import { takeUntil, take, map } from "rxjs/operators";
 import { element } from "@angular/core/src/render3/instructions";
+import { ItemFacturaMvc } from "../_interface/_interfaceCrea/ItemFacturaMvc.model";
+import { FacturaMvc } from "../_interface/_interfaceCrea/FacturaCrea.model";
 
 @Component({
   selector: "app-facturas",
@@ -46,16 +48,18 @@ export class FacturasComponent implements OnInit {
   private productos: Producto[];
   private productoControl: FormControl = new FormControl();
   private selectFormControl;
+  private idProducto: any;
   // todos los atributos relacionado con cliente
   public dataSource = new MatTableDataSource<Cliente>();
   private clienteForm: FormGroup;
   private idCliente: string;
   private cliente: any = [];
   private activarTabla: Boolean = false;
+  private activarBuscador: Boolean = true;
   // atributos para el formulario de facturas
   public facturaForm: FormGroup;
   private dialogConfig;
-
+  private itemProduc: ItemFacturaMvc[];
   @ViewChild(MatSort) sort: MatSort;
   
   constructor(
@@ -73,7 +77,11 @@ export class FacturasComponent implements OnInit {
       descripcion: new FormControl("", [
         Validators.required,
         Validators.maxLength(20)
-      ])
+      ]),
+      observacion:  new FormControl("", [
+        Validators.required,
+        Validators.maxLength(30)
+      ]),
     });
     this.dialogConfig = {
       height: "200px",
@@ -98,6 +106,7 @@ export class FacturasComponent implements OnInit {
   }
   
   public getIdProducto = id => {
+    this.idProducto = id;
     console.log(id);
   }
 
@@ -119,43 +128,57 @@ export class FacturasComponent implements OnInit {
   };
 
   public onCancel = () => {
-    let url: string = `/inicio`;
-    console.log(url);
-    this.router.navigate([url]);
+    // let url: string = `/inicio`;
+    // console.log(url);
+    // this.router.navigate([url]);
+    window.location.reload();
   };
 
   public createFactura = facturaFormValue => {
     if (this.facturaForm.valid) {
       this.executeFacturaCreation(facturaFormValue);
-      console.log(facturaFormValue);
+      // console.log(facturaFormValue);
     }
   };
 
   private getOwnerById = id => {
-  
+    
+    this.idCliente = id;
     let ownerByIdUrl: string = `api/clientes/${id}`;
     this.repoService.getData(ownerByIdUrl).subscribe(
       res => {
         this.cliente = res;
         this.cliente = Array.of(this.cliente);
-        this.activarTabla = false;
+       
       },
       error => {
         this.errorService.dialogConfig = this.dialogConfig;
         this.errorService.handleError(error);
       }
     );
+    this.activarBuscador = false;
+    this.activarTabla = false;
     return this.cliente;
   };
 
   private executeFacturaCreation = facturaFormValue => {
-    let factura: Factura = {
-      descripcion: facturaFormValue.factura,
+     this.itemProduc = [{
+      idProducto : this.idProducto,
+      cantidad : 1
+    }];
+  
+    // this.itemProduc = {itemFacturaMvc};
+    console.log(this.itemProduc);
+    let factura: FacturaMvc = {
+      descripcion: facturaFormValue.descripcion,
       observacion: facturaFormValue.observacion,
-      cliente: facturaFormValue.cliente
+      idCliente : this.idCliente,
+      items: this.itemProduc
+     
     };
+    console.log(factura)
 
-    let apiUrl = `/facturas/create/${this.idCliente}`;
+    let apiUrl = `api/facturas/create`;
     this.repoService.create(apiUrl, factura).subscribe(
       res => {
         let dialogRef = this.dialog.open(
@@ -165,7 +188,7 @@ export class FacturasComponent implements OnInit {
 
         //we are subscribing on the [mat-dialog-close] attribute as soon as we click on the dialog button
         dialogRef.afterClosed().subscribe(result => {
-          this.location.back();
+          window.location.reload();
         });
       },
       error => {

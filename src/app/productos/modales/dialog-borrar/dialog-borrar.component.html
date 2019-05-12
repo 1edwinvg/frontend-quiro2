@@ -15,7 +15,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions align="center">
-      <button mat-raised-button color="primary" (click)="deleteProducto()">
+      <button mat-raised-button color="primary" (click)="deleteProducto(producto?.id)">
         Delete
       </button>
       <button type="button" mat-raised-button color="warn" (click)="onCancel()">
