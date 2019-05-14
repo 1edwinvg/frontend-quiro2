@@ -42,12 +42,13 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="number" placeholder="edad" formControlName="edad" min="1" max="100" />
-          <mat-hint align="end">introduzca su edad</mat-hint>
-          <mat-error align="end" *ngIf="hasError('edad', 'required')">edad requerida</mat-error>
-
-          <mat-error align="end" *ngIf="hasError('edad', 'max')">edad no valida</mat-error>
+          <input color="primary" matInput [matDatepicker]="picker" formControlName="edad"
+            placeholder="Fecha de nacimiento - MM/DD/YYYY" [ngModel]="edad  | date:'yyyy-MM-dd'" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="hasError('edad', 'required')">fecha de nacimiento requerida</mat-error>
         </mat-form-field>
+
         <mat-form-field>
           <input matInput type="text" placeholder="dolencia" formControlName="dolencia" />
           <mat-hint align="end">no se admiten mas 60 caracteres</mat-hint>

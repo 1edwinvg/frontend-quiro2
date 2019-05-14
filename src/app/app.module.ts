@@ -26,6 +26,11 @@ import { ProductoService } from "./productos/producto.service";
 import { BuscadorPipe } from "./pipes/buscador.pipe";
 import { BuscarFacturasIdComponent } from './facturas/buscar-facturas-id/buscar-facturas-id.component';
 import { BuscarFacturasClienteComponent } from './facturas/buscar-facturas-cliente/buscar-facturas-cliente.component';
+import { DetalleComponent } from './facturas/buscar-facturas-id/detalle/detalle.component';
+import { FacturaServiceId } from "./facturas/buscar-facturas-id/FacturaServiceId";
+import { DetallesComponent } from './facturas/buscar-facturas-cliente/detalles/detalles.component';
+
+
 
 @NgModule({
   declarations: [
@@ -44,7 +49,9 @@ import { BuscarFacturasClienteComponent } from './facturas/buscar-facturas-clien
     DialogCrearComponent,
     BuscadorPipe,
     BuscarFacturasIdComponent,
-    BuscarFacturasClienteComponent
+    BuscarFacturasClienteComponent,
+    DetalleComponent,
+    DetallesComponent
   ],
   imports: [
     BrowserModule,
@@ -60,10 +67,12 @@ import { BuscarFacturasClienteComponent } from './facturas/buscar-facturas-clien
   entryComponents: [
     DialogBorrarComponent,
     DialogActualizarComponent,
-    DialogCrearComponent
+    DialogCrearComponent,
+    DetalleComponent,
+    DetallesComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ProductoService],
+  providers: [ProductoService,FacturaServiceId],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

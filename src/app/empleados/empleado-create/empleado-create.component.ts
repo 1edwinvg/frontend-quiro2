@@ -20,6 +20,7 @@ import { EmpleadoCrea } from "src/app/_interface/_interfaceCrea/EmpleadoCrea.mod
 export class EmpleadoCreateComponent implements OnInit {
   public empleadoForm: FormGroup;
   private dialogConfig;
+  private mensajeError: string;
 
   constructor(
     private location: Location,
@@ -30,6 +31,10 @@ export class EmpleadoCreateComponent implements OnInit {
 
   ngOnInit() {
     this.empleadoForm = new FormGroup({
+      dni: new FormControl("", [
+        Validators.required,
+        Validators.pattern(/^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i)
+      ]),
       nombre: new FormControl("", [
         Validators.required,
         Validators.maxLength(60)
@@ -37,13 +42,13 @@ export class EmpleadoCreateComponent implements OnInit {
       // dateOfBirth: new FormControl(new Date()),
       apellido: new FormControl("", [
         Validators.required,
-        Validators.maxLength(60)
+        Validators.maxLength(100)
       ]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      //movil: new FormControl("", [Validators.required, this.phoneNumberValidator ]),
       telefono: new FormControl("", [
         Validators.required,
         Validators.pattern("^[0-9]*$"),
+        Validators.maxLength(9),
         Validators.minLength(9)
       ]),
       tipoEmpleado: new FormControl("", [
@@ -79,11 +84,12 @@ export class EmpleadoCreateComponent implements OnInit {
 
   private executeOwnerCreation = empleadoFormValue => {
     let empleado: EmpleadoCrea = {
-      nombre: empleadoFormValue.nombre,
-      apellido: empleadoFormValue.apellido,
-      email: empleadoFormValue.email,
-      telefono: empleadoFormValue.telefono,
-      tipoEmpleado: empleadoFormValue.tipoEmpleado
+       dni: empleadoFormValue.dni,
+       nombre: empleadoFormValue.nombre,
+       apellido: empleadoFormValue.apellido,
+       email: empleadoFormValue.email,
+       telefono: empleadoFormValue.telefono,
+       tipoEmpleado: empleadoFormValue.tipoEmpleado,
     };
 
     let apiUrl = "api/empleados/create";
@@ -102,6 +108,11 @@ export class EmpleadoCreateComponent implements OnInit {
       error => {
         this.errorService.dialogConfig = { ...this.dialogConfig };
         this.errorService.handleError(error);
+         if (
+          error.includes("ConstraintViolationException")
+        ) {
+          this.mensajeError = "el empleado ya existe";
+        }
       }
     );
   };

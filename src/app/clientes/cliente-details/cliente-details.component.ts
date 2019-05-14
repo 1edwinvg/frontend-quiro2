@@ -25,7 +25,7 @@ export class ClienteDetailsComponent implements OnInit {
   // peticion al backend, se le envia el id para buscar al cliente
   private getOwnerDetails = () =>{
     let id: string = this.activeRoute.snapshot.params['id'];
-    let apiUrl: string = `api/clientes/${id}`;
+    let apiUrl: string = `api/clientesdetalle/${id}`;
     console.log(`el id del cliente es ${id} y la apiUrl es ${apiUrl}`);
  
     this.repository.getData(apiUrl)

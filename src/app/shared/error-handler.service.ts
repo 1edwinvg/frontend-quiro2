@@ -14,6 +14,7 @@ export class ErrorHandlerService {
   constructor(private router: Router, private dialog: MatDialog) {}
 
   public handleError(error: HttpErrorResponse) {
+    console.log("que error. error.message: " + error.message);
     if (error.status === 500) {
       this.handle500Error(error);
     } else if (error.status === 404) {

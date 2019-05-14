@@ -87,7 +87,7 @@ export class DialogCrearComponent  implements OnInit {
         this.errorService.dialogConfig = { ...this.dialogConfig };
         this.errorService.handleError(error);
         if (error.includes('ConstraintViolationException')) {
-          this.mensajeError = "el usuario ya existe";
+          this.mensajeError = "el producto ya existe";
        }
 
       }

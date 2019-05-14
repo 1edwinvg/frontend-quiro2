@@ -1,9 +1,8 @@
 import {
   Component,
   OnInit,
-  ViewChild,
-  AfterViewInit,
-  OnDestroy
+  ViewChild
+
 } from "@angular/core";
 import { RepositoryService } from "../shared/repository.service";
 import { ErrorHandlerService } from "../shared/error-handler.service";
@@ -82,6 +81,7 @@ export class FacturasComponent implements OnInit {
         Validators.required,
         Validators.maxLength(30)
       ]),
+      // fecha: new FormControl("", [Validators.required])
     });
     this.dialogConfig = {
       height: "200px",
@@ -128,9 +128,6 @@ export class FacturasComponent implements OnInit {
   };
 
   public onCancel = () => {
-    // let url: string = `/inicio`;
-    // console.log(url);
-    // this.router.navigate([url]);
     window.location.reload();
   };
 
@@ -172,6 +169,7 @@ export class FacturasComponent implements OnInit {
     let factura: FacturaMvc = {
       descripcion: facturaFormValue.descripcion,
       observacion: facturaFormValue.observacion,
+      // fecha: facturaFormValue.fecha,
       idCliente : this.idCliente,
       items: this.itemProduc
      

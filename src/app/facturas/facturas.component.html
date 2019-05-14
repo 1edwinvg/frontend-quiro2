@@ -4,7 +4,7 @@
       fxLayoutGap.lt.md="20px">
       <div *ngIf="activarBuscador">
       <mat-form-field>
-        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Buscar" />
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Buscar Cliente" />
       </mat-form-field>
       </div>
     </div>
@@ -78,6 +78,14 @@
           <mat-error *ngIf="hasError('descripcion', 'required')">se necesita la descripcion</mat-error>
           <mat-error *ngIf="hasError('descripcion', 'maxlength')">Tienes más de 20 caracteres.</mat-error>
         </mat-form-field>
+
+        <!-- <mat-form-field>
+            <input color="primary" matInput [matDatepicker]="picker" formControlName="fecha"
+              placeholder="Fecha Factura - MM/DD/YYYY" [ngModel]="fecha"  | date:'yyyy-MM-dd'" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="hasError('fecha', 'required')">fecha de nacimiento requerida</mat-error>
+          </mat-form-field> -->
 
       </mat-card-content>
       <mat-card-actions align="center">

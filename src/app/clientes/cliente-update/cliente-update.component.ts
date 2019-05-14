@@ -58,8 +58,6 @@ export class ClienteUpdateComponent implements OnInit {
       ]),
       edad: new FormControl("", [
         Validators.required,
-				Validators.pattern("^[0-9]*$"),
-				Validators.max(100)
       ])
       //edad: new FormControl("", [ Validators.required, this.phoneNumberValidator]),
     });
@@ -73,14 +71,7 @@ export class ClienteUpdateComponent implements OnInit {
     this.getOwnerById();
   }
 
-  phoneNumberValidator(
-    control: AbstractControl
-  ): { [key: string]: any } | null {
-    const valid = /^\d+$/.test(control.value);
-    return valid
-      ? null
-      : { invalidNumber: { valid: false, value: control.value } };
-  }
+ 
 
   public hasError = (controlName: string, errorName: string) => {
     return this.clienteForm.controls[controlName].hasError(errorName);

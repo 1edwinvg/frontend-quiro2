@@ -10,3 +10,8 @@ mat-card-content{
 mat-form-field{
     width: 100%;
 }
+.error-constraint{
+	color:red; 
+	font-size: 0.7em;
+	margin: 3% 1%;
+}

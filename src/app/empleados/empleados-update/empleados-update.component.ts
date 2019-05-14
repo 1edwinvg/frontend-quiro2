@@ -33,6 +33,9 @@ export class EmpleadosUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.ownerForm = new FormGroup({
+      dni: new FormControl("",[
+        Validators.required
+      ]),
       nombre: new FormControl("", [
         Validators.required,
         Validators.maxLength(60)
@@ -45,7 +48,8 @@ export class EmpleadosUpdateComponent implements OnInit {
       email: new FormControl("", [Validators.required, Validators.email]),
       telefono: new FormControl("", [
         Validators.required,
-        this.phoneNumberValidator
+        Validators.pattern("^[0-9]*$"),
+        Validators.minLength(9)
       ])
     });
     this.dialogConfig = {
@@ -56,15 +60,6 @@ export class EmpleadosUpdateComponent implements OnInit {
     };
 
     this.getOwnerById();
-  }
-
-  phoneNumberValidator(
-    control: AbstractControl
-  ): { [key: string]: any } | null {
-    const valid = /^\d+$/.test(control.value);
-    return valid
-      ? null
-      : { invalidNumber: { valid: false, value: control.value } };
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -105,6 +100,7 @@ export class EmpleadosUpdateComponent implements OnInit {
   };
 
   private executeOwnerUpdate = ownerFormValue => {
+    (this.owner.dni = ownerFormValue.dni),
     (this.owner.nombre = ownerFormValue.nombre),
       (this.owner.apellido = ownerFormValue.apellido),
       (this.owner.email = ownerFormValue.email),

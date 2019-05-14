@@ -1,0 +1,29 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <mat-card-title>detalle Factura</mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column wrap" fxLayoutGap="40px">
+        <div *ngFor="let factu of factura">
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>cantidad</strong></div>
+            <div fxFlex>{{ factu.items[0].cantidad}}</div>
+          </div>
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>producto</strong></div>
+            <div fxFlex>{{ factu.items[0].producto.nombre }}</div>
+          </div>
+
+          <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>precio</strong></div>
+            <div fxFlex>{{ factu.items[0].producto.precio }}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button type="button" mat-raised-button color="primary" (click)="onCancel()">
+        Cerrar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>

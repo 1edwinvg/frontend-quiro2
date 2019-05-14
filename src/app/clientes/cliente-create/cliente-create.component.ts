@@ -21,6 +21,8 @@ export class ClienteCreateComponent implements OnInit {
   public clienteForm: FormGroup;
   private dialogConfig;
   private mensajeError: string;
+  private cliente: any = [];
+  private activarAviso: boolean = false;
 
   constructor(
     private location: Location,
@@ -45,7 +47,6 @@ export class ClienteCreateComponent implements OnInit {
         Validators.maxLength(100)
       ]),
       email: new FormControl("", [Validators.required, Validators.email]),
-      //movil: new FormControl("", [Validators.required, this.phoneNumberValidator ]),
       movil: new FormControl("", [
         Validators.required,
         Validators.pattern("^[0-9]*$"),
@@ -55,12 +56,7 @@ export class ClienteCreateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(60)
       ]),
-      edad: new FormControl("", [
-        Validators.required,
-        Validators.pattern("^[0-9]*$"),
-        Validators.max(100)
-      ])
-      
+      edad: new FormControl("", [Validators.required])
     });
 
     this.dialogConfig = {
@@ -88,14 +84,20 @@ export class ClienteCreateComponent implements OnInit {
 
   /* le pasamos el value de los inputs*/
   private executeClienteCreation = clienteFormValue => {
+    let dniCliente: any =  clienteFormValue.dni;
+    // if(dniCliente. ) {
+    //   this.activarAviso = false;
+    // }
     let cliente: ClienteCrea = {
-      dni: clienteFormValue.dni,
+      //dni: clienteFormValue.dni,
+      dni: dniCliente,
       nombre: clienteFormValue.nombre,
       apellido: clienteFormValue.apellido,
       edad: clienteFormValue.edad,
       email: clienteFormValue.email,
       movil: clienteFormValue.movil,
-      dolencia: clienteFormValue.dolencia
+      dolencia: clienteFormValue.dolencia,
+      
     };
 
     // DEFINE URL PARA LA PETICION AL BACKEND
@@ -115,7 +117,10 @@ export class ClienteCreateComponent implements OnInit {
       error => {
         this.errorService.dialogConfig = { ...this.dialogConfig };
         this.errorService.handleError(error);
-        if (error.includes("ConstraintViolationException")) {
+        if (
+          error.includes("ConstraintViolationException") 
+        ) {
+          this.activarAviso = true;
           this.mensajeError = "el usuario ya existe";
         }
       }

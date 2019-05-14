@@ -1,54 +1,49 @@
 <section fxLayout="row wrap" fxLayoutAlign="center center">
   <mat-card fxFlex="500px" fxFlex.xs="100%">
     <mat-card-title>Nuevo Empleado</mat-card-title>
-    <form [formGroup]="empleadoForm" autocomplete="on" novalidate (ngSubmit)="createEmpleado(empleadoForm.value)" fxLayout="column wrap"
-      fxLayoutAlign="center center" fxLayoutGap="20px" method="POST">
+    <form [formGroup]="empleadoForm" autocomplete="on" novalidate (ngSubmit)="createEmpleado(empleadoForm.value)"
+      fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="20px" method="POST">
 
-  
       <mat-card-content>
+        <mat-form-field>
+          <input matInput type="text" placeholder="DNI:" formControlName="dni" id="dni" />
+          <mat-hint align="end">introduzca NIF valido</mat-hint>
+          <mat-error align="end" *ngIf="hasError('dni', 'required')">NIF requerido</mat-error>
+          <mat-error align="end" *ngIf="hasError('dni', 'pattern')">formato NIF no valido</mat-error>
+          <span class="error-constraint">{{ mensajeError }}</span>
+        </mat-form-field>
 
-          <mat-form-field>
-              <input matInput type="text" placeholder="DNI:" formControlName="dni" id="dni"  readonly/>
-              <mat-hint align="end">introduzca NIF valido</mat-hint>
-              <mat-error align="end" *ngIf="hasError('dni', 'required')">NIF requerido</mat-error>
-              <mat-error align="end" *ngIf="hasError('dni', 'pattern')">formato NIF no valido</mat-error>
-            </mat-form-field>
-
-        <mat-form-field >
+        <mat-form-field>
           <input matInput type="text" placeholder="Nombre" formControlName="nombre" id="nombre">
           <mat-hint align="end">No más de 60 caracteres.</mat-hint>
           <mat-error *ngIf="hasError('nombre', 'required')">se necesita el nombre</mat-error>
           <mat-error *ngIf="hasError('nombre', 'maxlength')">Tienes más de 60 caracteres.</mat-error>
         </mat-form-field>
 
-        <!-- <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="edad" formControlName="edad" id="edad"
-            readonly (click)="picker.open()">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> -->
 
-        <mat-form-field >
+        <mat-form-field>
           <input matInput type="text" placeholder="apellido" formControlName="apellido" id="apellido">
           <mat-hint align="end">no mas de 60 caracteres.</mat-hint>
           <mat-error *ngIf="hasError('apellido', 'required')">se necesita el nombre</mat-error>
           <mat-error *ngIf="hasError('apellido', 'maxlength')">Tienes más de 60 caracteres.</mat-error>
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field>
           <input matInput type="text" placeholder="email" formControlName="email" id="email">
           <mat-hint align="end">un email valido</mat-hint>
           <mat-error *ngIf="hasError('email', 'required')">se necesita el email</mat-error>
           <mat-error *ngIf="hasError('email', 'email')">el email no valido</mat-error>
         </mat-form-field>
 
-        <mat-form-field >
+        <mat-form-field>
           <input matInput type="text" placeholder="telefono" formControlName="telefono" id="telefono">
           <mat-hint align="end">solo numeros</mat-hint>
           <mat-error *ngIf="hasError('telefono', 'required')">el telefono es requerido</mat-error>
-          <mat-error *ngIf="hasError('telefono', 'number')">solo numeros</mat-error>
+          <mat-error align="end" *ngIf="hasError('telefono', 'pattern')">introduzca un numero de telefono real</mat-error>
+          <mat-error align="end" *ngIf="empleadoForm.get('telefono').hasError('minlength')">al menos 9 digitos</mat-error>
+          <mat-error align="end" *ngIf="empleadoForm.get('telefono').hasError('maxlength')">no puede superar 9 digitos</mat-error>
         </mat-form-field>
 
-        <mat-form-field >
+        <mat-form-field>
           <input matInput type="text" placeholder="tipo de empleado" formControlName="tipoEmpleado" id="tipoEmpleado">
           <mat-hint align="end">no mas de 60 caracteres.</mat-hint>
           <mat-error *ngIf="hasError('tipoEmpleado', 'required')">se necesita el tipo de empleado</mat-error>
@@ -56,8 +51,8 @@
         </mat-form-field>
 
       </mat-card-content>
-      
-      
+
+
       <mat-card-actions align="center">
         <button mat-raised-button color="primary" [disabled]="!empleadoForm.valid">Create</button>
         <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
