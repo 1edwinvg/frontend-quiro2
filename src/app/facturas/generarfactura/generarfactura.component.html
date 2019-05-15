@@ -1,4 +1,4 @@
-<section fxLayout="row wrap" fxLayoutAlign="center center">
+<section fxLayout="row wrap" fxLayoutAlign="center center" id = "contentToConvert" >
   <mat-card fxFlex="500px" fxFlex.xs="100%">
     <img class="logo" src="assets/img/logo.png ">
     <mat-card-title>FACTURA N{{ factura?.id}} </mat-card-title>
@@ -46,3 +46,8 @@
     </mat-card-content>
   </mat-card>
 </section>
+<mat-card-actions align="center">
+    <button type="button" mat-raised-button color="primary" (click)="captureScreen()">
+      Imprimir
+    </button>
+  </mat-card-actions>
