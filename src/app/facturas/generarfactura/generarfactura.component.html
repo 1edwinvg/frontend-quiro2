@@ -1,0 +1,48 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="500px" fxFlex.xs="100%">
+    <img class="logo" src="assets/img/logo.png ">
+    <mat-card-title>FACTURA N{{ factura?.id}} </mat-card-title>
+    <mat-card-content>
+      <div fxLayout="column wrap" fxLayoutGap="40px">
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>DNI :</strong></div>
+          <div fxFlex>{{ cliente?.dni }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Nombre :</strong></div>
+          <div fxFlex>{{ cliente?.nombre }} {{ cliente?.apellido }}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Telefono :</strong></div>
+          <div fxFlex>{{ cliente?.movil }}</div>
+        </div>
+
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Descripcion :</strong></div>
+          <div fxFlex>{{ factura?.descripcion }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Cantidad :</strong></div>
+          <div fxFlex>{{ factura?.items[0].cantidad }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>Nombre Producto :</strong></div>
+          <div fxFlex>{{ factura?.items[0].producto.nombre }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>precio Producto :</strong></div>
+          <div fxFlex>{{ factura?.items[0].producto.precio }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+          <div fxFlex><strong>precio Producto :</strong></div>
+          <div fxFlex>{{ factura?.total }}</div>
+        </div>
+        <div fxLayout="row wrap" fxFlex>
+            <div fxFlex><strong>Fecha :</strong></div>
+            <div fxFlex>{{ factura?.items[0].producto.createAt }}</div>
+          </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

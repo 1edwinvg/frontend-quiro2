@@ -6,6 +6,7 @@ import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
 import { Router } from '@angular/router';
 import { FacturaServiceId } from '../buscar-facturas-id/FacturaServiceId';
 import { DetallesComponent } from './detalles/detalles.component';
+import { facturaClienteService } from './facturaClienteService';
 
 @Component({
   selector: 'app-buscar-facturas-cliente',
@@ -31,7 +32,8 @@ export class BuscarFacturasClienteComponent implements OnInit {
     private errorService: ErrorHandlerService,
     private router: Router,
     private dialog?: MatDialog,
-    private facturaService?: FacturaServiceId
+    private facturaService?: FacturaServiceId,
+    private facturaClienteSer?: facturaClienteService
   ) {}
 
   ngOnInit() {
@@ -63,6 +65,7 @@ export class BuscarFacturasClienteComponent implements OnInit {
 
   public detalles = (id: string) => {
     this.facturaService.setId(id);
+    this.facturaClienteSer.setId(id);
     this.dialog.open(DetallesComponent, this.dialogConfig);
   };
 

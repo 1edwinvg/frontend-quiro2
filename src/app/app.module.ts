@@ -29,6 +29,8 @@ import { BuscarFacturasClienteComponent } from './facturas/buscar-facturas-clien
 import { DetalleComponent } from './facturas/buscar-facturas-id/detalle/detalle.component';
 import { FacturaServiceId } from "./facturas/buscar-facturas-id/FacturaServiceId";
 import { DetallesComponent } from './facturas/buscar-facturas-cliente/detalles/detalles.component';
+import { GenerarfacturaComponent } from './facturas/generarfactura/generarfactura.component';
+import { facturaClienteService } from "./facturas/buscar-facturas-cliente/facturaClienteService";
 
 
 
@@ -51,7 +53,8 @@ import { DetallesComponent } from './facturas/buscar-facturas-cliente/detalles/d
     BuscarFacturasIdComponent,
     BuscarFacturasClienteComponent,
     DetalleComponent,
-    DetallesComponent
+    DetallesComponent,
+    GenerarfacturaComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,7 @@ import { DetallesComponent } from './facturas/buscar-facturas-cliente/detalles/d
     DetallesComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ProductoService,FacturaServiceId],
+  providers: [ProductoService,FacturaServiceId,facturaClienteService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

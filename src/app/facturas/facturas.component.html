@@ -67,16 +67,16 @@
       <mat-card-content>
         <mat-form-field>
           <input matInput type="text" placeholder="descripcion" formControlName="descripcion" id="descripcion">
-          <mat-hint align="end">no mas de 60 caracteres.</mat-hint>
+          <mat-hint align="end">no mas de 50 caracteres.</mat-hint>
           <mat-error *ngIf="hasError('descripcion', 'required')">se necesita la descripcion</mat-error>
-          <mat-error *ngIf="hasError('descripcion', 'maxlength')">Tienes más de 20 caracteres.</mat-error>
+          <mat-error *ngIf="hasError('descripcion', 'maxlength')">Tienes más de 50 caracteres.</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput type="text" placeholder="observacion" formControlName="observacion" id="observacion">
           <mat-hint align="end">campo no obligatorio</mat-hint>
-          <mat-error *ngIf="hasError('descripcion', 'required')">se necesita la descripcion</mat-error>
-          <mat-error *ngIf="hasError('descripcion', 'maxlength')">Tienes más de 20 caracteres.</mat-error>
+          <mat-error *ngIf="hasError('observacion', 'required')">se necesita la descripcion</mat-error>
+          <mat-error *ngIf="hasError('observacion', 'maxlength')">Tienes más de 50 caracteres.</mat-error>
         </mat-form-field>
 
         <!-- <mat-form-field>

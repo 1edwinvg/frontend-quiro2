@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, HostListener, HostBinding, Output, EventEmitter } from "@angular/core";
 import {
   MatDialog,
   MatDialogRef,
@@ -12,6 +12,7 @@ import { ErrorHandlerService } from "src/app/shared/error-handler.service";
 import { FacturaServiceId } from "../../buscar-facturas-id/FacturaServiceId";
 import { DetalleComponent } from "../../buscar-facturas-id/detalle/detalle.component";
 import { Factura } from "src/app/_interface/factura.model";
+import { facturaClienteService } from "../facturaClienteService";
 
 @Component({
   selector: "app-detalles",
@@ -21,6 +22,8 @@ import { Factura } from "src/app/_interface/factura.model";
 export class DetallesComponent implements OnInit {
   private factura: any = [];
   private dialogConfig;
+   private idClien: any;
+   @Output() idUser: EventEmitter<any> = new EventEmitter();
 
   public displayedColumns = ["id", "fecha", "detalles"];
   public dataSource = new MatTableDataSource<Factura>();
@@ -31,12 +34,14 @@ export class DetallesComponent implements OnInit {
     private dialog: MatDialog,
     private repository: RepositoryService,
     private errorService: ErrorHandlerService,
-    private facturaServiceId: FacturaServiceId,
+    private facturaService: FacturaServiceId,
     public dialogRef: MatDialogRef<DetalleComponent>,
-    private facturaService?: FacturaServiceId
+    private facturaClienteSer?: facturaClienteService
   ) {}
 
   ngOnInit() {
+    this.idClien = this.facturaService.getId();
+    // this.facturaClienteSer.setId(1);
     this.getFacturas();
     this.dialogConfig = {
       height: "200px",
@@ -54,9 +59,8 @@ export class DetallesComponent implements OnInit {
   }
 
   public getFacturas = () => {
-    let id: any = this.facturaServiceId.getId();
-    console.log("este es el id" + id);
-    let IdUrl: string = `api/clientefactura/${id}`;
+    console.log("este es el id" + this.idClien);
+    let IdUrl: string = `api/clientefactura/${this.idClien}`;
     this.repository.getData(IdUrl).subscribe(
       res => {
         this.dataSource.data = res as Factura[];
@@ -69,11 +73,11 @@ export class DetallesComponent implements OnInit {
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   };
+
+ 
   public detalles = (id: string) => {
-    this.facturaService.setId(id);
-    const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-    const dialogRef = this.dialog.open(DetalleComponent, this.dialogConfig);
+    
+    this.idUser.emit(this.facturaClienteSer.setId(id));
+     this.dialogRef.close();         
   };
 }

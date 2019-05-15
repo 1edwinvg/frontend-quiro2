@@ -75,11 +75,11 @@ export class FacturasComponent implements OnInit {
     this.facturaForm = new FormGroup({
       descripcion: new FormControl("", [
         Validators.required,
-        Validators.maxLength(20)
+        Validators.maxLength(50)
       ]),
       observacion:  new FormControl("", [
         Validators.required,
-        Validators.maxLength(30)
+        Validators.maxLength(50)
       ]),
       // fecha: new FormControl("", [Validators.required])
     });

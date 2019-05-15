@@ -19,7 +19,7 @@
 
   <ng-container matColumnDef="fecha">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>fecha</th>
-    <td mat-cell *matCellDef="let element">{{ element.createAt}}</td>
+    <td mat-cell *matCellDef="let element">{{ element.items[0].producto.createAt | date:'fullDate'}}</td>
   </ng-container>
 
   <!-- <ng-container matColumnDef="cantidad">
@@ -29,7 +29,7 @@
 
   <ng-container matColumnDef="total">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>total</th>
-    <td mat-cell *matCellDef="let element">{{ element.total}}</td>
+    <td mat-cell *matCellDef="let element">{{ element.total | currency:'EUR':true}}</td>
   </ng-container>
 
   <ng-container matColumnDef="detalles">
